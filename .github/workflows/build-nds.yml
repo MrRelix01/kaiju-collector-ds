@@ -1,6 +1,7 @@
 name: Build Kaiju Collector Boot Test ROM
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - main
