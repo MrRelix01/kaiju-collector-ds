@@ -1,0 +1,32 @@
+name: Build Kaiju Collector DS ROM
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: devkitpro/devkitarm:latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build ROM
+        run: |
+          make clean
+          make
+
+      - name: Verify ROM output
+        run: test -f kaiju_collector_ds.nds
+
+      - name: Upload ROM artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: kaiju-collector-ds
+          path: kaiju_collector_ds.nds
+          if-no-files-found: error
