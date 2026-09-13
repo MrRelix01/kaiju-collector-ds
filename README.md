@@ -1,18 +1,17 @@
 # Kaiju Collector DS
 
-Kaiju Collector DS is a Nintendo DS homebrew prototype built with devkitPro (`devkitARM` + `libnds`).
+Kaiju Collector DS is a Nintendo DS homebrew project built with devkitPro (`devkitARM` + `libnds`).
 
-Current prototype behavior:
-- Title screen on boot using both DS screens.
-- Start input via touchscreen (primary) or physical **A**.
-- Battle prototype with `Pebblit` vs `Emberjaw`.
-- Touch buttons: **ATTACK**, **SCAN**, **PACK**, **KAIJU**.
-- **A** acts as confirm, **B** acts as back where appropriate.
-- Basic combat loop with HP, enemy counterattack, defeat handling, and battle reset.
+Current default ROM behavior:
+- Diagnostic boot test using only libnds console output.
+- Lower-screen boot confirmation text and touch/button input feedback.
+- Top-screen solid-color test with visible marker text.
+- No NitroFS or external startup file dependency.
 
 ## Repository structure
 
-- `/source` - ARM9 gameplay source modules
+- `/source` - active ARM9 entrypoint and modules
+- `/source/prototype` - preserved battle prototype entrypoint
 - `/include` - shared headers
 - `/assets/graphics` - reserved graphics assets
 - `/assets/audio` - reserved audio assets
@@ -36,7 +35,7 @@ make
 
 Expected ROM output:
 
-- `kaiju_collector_ds.nds`
+- `kaiju_collector_boot_test.nds`
 
 ## GitHub Actions build
 
@@ -45,12 +44,12 @@ The workflow at `.github/workflows/build-nds.yml` runs on:
 - Pull requests
 
 It compiles the ROM with the official `devkitpro/devkitarm` container and uploads artifact:
-- Artifact name: `kaiju-collector-ds`
-- Artifact file: `kaiju_collector_ds.nds`
+- Artifact name: `kaiju-collector-boot-test`
+- Artifact file: `kaiju_collector_boot_test.nds`
 
 ## Downloading the built ROM artifact
 
 After a workflow run completes:
 1. Open the repository **Actions** tab.
 2. Open the latest **Build Kaiju Collector DS ROM** run.
-3. Download the **kaiju-collector-ds** artifact.
+3. Download the **kaiju-collector-boot-test** artifact.

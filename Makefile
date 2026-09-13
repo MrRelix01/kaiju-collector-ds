@@ -8,7 +8,7 @@ endif
 
 include $(DEVKITARM)/ds_rules
 
-TARGET		:=	kaiju_collector_ds
+TARGET		:=	kaiju_collector_boot_test
 BUILD		:=	build
 SOURCES		:=	source source/screens source/battle source/ui data
 INCLUDES	:=	include build

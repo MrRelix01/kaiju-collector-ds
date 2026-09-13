@@ -1,4 +1,4 @@
-name: Build Kaiju Collector DS ROM
+name: Build Kaiju Collector Boot Test ROM
 
 on:
   push:
@@ -24,11 +24,13 @@ jobs:
           make
 
       - name: Verify ROM output
-        run: test -f kaiju_collector_ds.nds
+        run: |
+          test -f kaiju_collector_boot_test.nds
+          test -s kaiju_collector_boot_test.nds
 
       - name: Upload ROM artifact
         uses: actions/upload-artifact@v4
         with:
-          name: kaiju-collector-ds
-          path: kaiju_collector_ds.nds
+          name: kaiju-collector-boot-test
+          path: kaiju_collector_boot_test.nds
           if-no-files-found: error
