@@ -130,7 +130,7 @@ void battle_draw_top(const BattleState *state) {
     iprintf("\x1b[10;23H/  \\");
     iprintf("\x1b[11;24H||");
 
-    iprintf("\x1b[15;1H%s", state->message);
+    iprintf("\x1b[15;1H%-31.31s", state->message);
 
     if (state->enemy_counter_pending && !battle_is_over(state)) {
         iprintf("\x1b[18;1HEmberjaw is preparing...");
@@ -142,9 +142,9 @@ void battle_draw_bottom(const BattleState *state) {
     consoleClear();
 
     if (battle_is_over(state)) {
-        iprintf("\x1b[6;6H%s", state->message);
+        iprintf("\x1b[6;1H%-31.31s", state->message);
         ui_draw_continue_button();
-        iprintf("\x1b[23;1HA: Confirm  B: Restart");
+        iprintf("\x1b[23;1HA/B: Continue");
         return;
     }
 
@@ -173,5 +173,9 @@ void battle_draw_bottom(const BattleState *state) {
             break;
     }
 
-    iprintf("\x1b[23;1HA: Confirm  B: Back");
+    if (state->menu == BATTLE_MENU_COMMANDS) {
+        iprintf("\x1b[23;1HTouch buttons to act");
+    } else {
+        iprintf("\x1b[23;1HA: Confirm  B: Back");
+    }
 }

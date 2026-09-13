@@ -9,7 +9,7 @@ The prototype uses a small modular ARM9 codebase focused on DS-native rendering 
 - `source/battle/combat.c` - battle state, combat loop, messages, HP, draw routines
 - `source/ui/touch_buttons.c` - touchscreen hitboxes and button rendering helpers
 
-Rendering uses `libnds` console output on both screens (`consoleMain`/`consoleSub`) to keep memory and asset usage low.
+Rendering uses `libnds` console output on both screens with explicit `PrintConsole` instances (`top_console` and `bottom_console`) selected via `consoleSelect`, keeping memory and asset usage low.
 Input uses touchscreen as primary control with physical A/B support for confirm/back behavior.
 
 ## Reserved future modules
